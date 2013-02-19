@@ -197,6 +197,7 @@ public class GUI extends javax.swing.JFrame
 
         txtCount.setEditable(false);
 
+        txtResult.setEditable(false);
         txtResult.setColumns(20);
         txtResult.setRows(5);
         jScrollPane1.setViewportView(txtResult);
@@ -219,7 +220,7 @@ public class GUI extends javax.swing.JFrame
                                 .addGap(24, 24, 24)
                                 .addComponent(lblCount)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
