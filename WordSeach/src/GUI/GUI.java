@@ -6,6 +6,7 @@ package GUI;
 
 import BLL.WSManager;
 import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -30,7 +31,7 @@ public class GUI extends javax.swing.JFrame
         }
         catch (FileNotFoundException ex)
         {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(this, "The dictionary file was not found", "Error - File not Found", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -155,7 +156,7 @@ public class GUI extends javax.swing.JFrame
 
         PanelLimitation.setBorder(javax.swing.BorderFactory.createTitledBorder("Limitation"));
 
-        cmbLimits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "20", "50", "100" }));
+        cmbLimits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "10", "20", "50", "100" }));
         cmbLimits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbLimitsActionPerformed(evt);
