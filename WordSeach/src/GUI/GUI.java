@@ -63,7 +63,6 @@ public class GUI extends javax.swing.JFrame
         cmbLimits = new javax.swing.JComboBox();
         lblCount = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
-        txtCount = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResult = new javax.swing.JTextArea();
 
@@ -191,11 +190,9 @@ public class GUI extends javax.swing.JFrame
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        lblCount.setText("Count");
+        lblCount.setText("Count: ");
 
         btnClose.setText("Close");
-
-        txtCount.setEditable(false);
 
         txtResult.setEditable(false);
         txtResult.setColumns(20);
@@ -217,13 +214,11 @@ public class GUI extends javax.swing.JFrame
                         .addComponent(lblResult)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(lblCount)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(24, 24, 24)
+                                .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -267,9 +262,7 @@ public class GUI extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCount)
-                            .addComponent(txtCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblCount)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose)
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -297,7 +290,7 @@ public class GUI extends javax.swing.JFrame
             txtResult.append(wsmgr.listAll().get(i)+ "\n");
         }
         
-        txtCount.setText("" + wsmgr.listAll().size());
+        lblCount.setText("Count: " + wsmgr.listAll().size());
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -372,7 +365,6 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JRadioButton rbtnContains;
     private javax.swing.JRadioButton rbtnEndswith;
     private javax.swing.JRadioButton rbtnExact;
-    private javax.swing.JTextField txtCount;
     private javax.swing.JTextField txtQuery;
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
