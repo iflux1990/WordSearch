@@ -28,8 +28,12 @@ public class WSManager {
         ArrayList<String> searchResult = new ArrayList();
 
         for (int i = 0; i < wsmgr.listAll().size(); i++) {
-            if (SearchWord == null ? wsmgr.listAll().get(i) == null : SearchWord.equals(wsmgr.listAll().get(i))) {
+            if (SearchWord.toLowerCase() == null ? wsmgr.listAll().get(i) == null : SearchWord.toLowerCase().equals(wsmgr.listAll().get(i))) {
                 searchResult.add(wsmgr.listAll().get(i));
+            }
+            else if("".equals(SearchWord))
+            {
+                return wsmgr.listAll();
             }
         }
         return searchResult;
