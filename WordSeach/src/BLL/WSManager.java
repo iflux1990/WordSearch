@@ -12,16 +12,27 @@ import java.util.ArrayList;
  *
  * @author Daniel
  */
-public class WSManager
-{
+public class WSManager {
+
     private WSDBManager wsmgr;
-    
-    public WSManager() throws FileNotFoundException
-    {
-       wsmgr = new WSDBManager();
+
+    public WSManager() throws FileNotFoundException {
+        wsmgr = new WSDBManager();
     }
-    public ArrayList<String> listAll()
-    {
+
+    public ArrayList<String> listAll() {
         return wsmgr.listAll();
+    }
+
+    public ArrayList<String> search(String SearchWord) {
+        ArrayList<String> searchResult = new ArrayList();
+
+        for (int i = 0; i < wsmgr.listAll().size(); i++) {
+            if (SearchWord == null ? wsmgr.listAll().get(i) == null : SearchWord.equals(wsmgr.listAll().get(i))) {
+                searchResult.add(wsmgr.listAll().get(i));
+            }
+        }
+        return searchResult;
+
     }
 }
