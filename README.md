@@ -1,0 +1,4 @@
+WordSearch
+==========
+
+A dictionary
