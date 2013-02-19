@@ -15,21 +15,22 @@ import java.util.Scanner;
  */
 public class WSDBManager
 {
-    private ArrayList<String> result;
+    ArrayList<String> result = new ArrayList();
 
+    public WSDBManager() throws FileNotFoundException
+    {
+        FileReader fr = new FileReader("brit-a-z.txt");
+        Scanner sc = new Scanner(fr);
+        
+        while(sc.hasNextLine())
+        {
+            result.add(sc.nextLine());
+        } 
+    }
+       
     public ArrayList<String> listAll()
     {
         return result;
     }
     
-    public void WSDBManager () throws FileNotFoundException
-    {
-        FileReader fr = new FileReader("src/brit-a-z.txt");
-        Scanner sc = new Scanner(fr);
-        
-        while(sc.hasNextLine())
-        {
-            result.add(sc.next());
-        } 
-    }
 }

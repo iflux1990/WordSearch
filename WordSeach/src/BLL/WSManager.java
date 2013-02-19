@@ -5,7 +5,7 @@
 package BLL;
 
 import DAL.WSDBManager;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +14,13 @@ import java.util.ArrayList;
  */
 public class WSManager
 {
-    private WSDBManager wsmgr = new WSDBManager();
-
-    public ArrayList<String> listAll() throws IOException
+    private WSDBManager wsmgr;
+    
+    public WSManager() throws FileNotFoundException
+    {
+       wsmgr = new WSDBManager();
+    }
+    public ArrayList<String> listAll()
     {
         return wsmgr.listAll();
     }

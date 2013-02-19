@@ -4,6 +4,12 @@
  */
 package GUI;
 
+import BLL.WSManager;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Daniel
@@ -11,12 +17,22 @@ package GUI;
 public class GUI extends javax.swing.JFrame
 {
 
+    private WSManager wsmgr;
+
     /**
      * Creates new form GUI
      */
     public GUI()
     {
         initComponents();
+        try
+        {
+            wsmgr = new WSManager();
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
 
     }
 
@@ -48,7 +64,7 @@ public class GUI extends javax.swing.JFrame
         lblCount = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         txtCount = new javax.swing.JTextField();
-        SPanelResult = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         txtResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +93,13 @@ public class GUI extends javax.swing.JFrame
         });
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         PanelSearchType.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, java.awt.Color.black));
 
@@ -172,10 +195,11 @@ public class GUI extends javax.swing.JFrame
 
         btnClose.setText("Close");
 
-        txtResult.setEditable(false);
+        txtCount.setEditable(false);
+
         txtResult.setColumns(20);
         txtResult.setRows(5);
-        SPanelResult.setViewportView(txtResult);
+        jScrollPane1.setViewportView(txtResult);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,13 +216,13 @@ public class GUI extends javax.swing.JFrame
                         .addComponent(lblResult)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(24, 24, 24)
                                 .addComponent(lblCount)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(SPanelResult, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -214,7 +238,7 @@ public class GUI extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(302, 302, 302)
                         .addComponent(btnClose)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {PanelLimitation, PanelStyle});
@@ -240,7 +264,7 @@ public class GUI extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(PanelLimitation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(SPanelResult, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCount)
@@ -267,8 +291,19 @@ public class GUI extends javax.swing.JFrame
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
     {//GEN-HEADEREND:event_btnSearchActionPerformed
-
+        for(int i = 0; i < wsmgr.listAll().size(); i++)
+        {
+            txtResult.append(wsmgr.listAll().get(i)+ "\n");
+        }
+        
+        txtCount.setText("" + wsmgr.listAll().size());
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
+    {//GEN-HEADEREND:event_btnClearActionPerformed
+        txtResult.setText("");
+        txtQuery.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,13 +357,13 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JPanel PanelLimitation;
     private javax.swing.JPanel PanelSearchType;
     private javax.swing.JPanel PanelStyle;
-    private javax.swing.JScrollPane SPanelResult;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSearch;
     private javax.swing.ButtonGroup btngSearchType;
     private javax.swing.JCheckBox chkCasesensitive;
     private javax.swing.JComboBox cmbLimits;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblQuery;
     private javax.swing.JLabel lblResult;
