@@ -300,7 +300,7 @@ public class GUI extends javax.swing.JFrame
         txtResult.setText("");
         search();
         updateResult();
-        
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -421,4 +421,44 @@ public class GUI extends javax.swing.JFrame
         lblCount.setText("Count: " + search().size());
     }
 
+    private void addEnterKeyListeners()
+    {
+        KeyListener enterListener = new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent enter)
+            {
+                if (enter.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    btnSearch.doClick();
+                }
+            }
+        };
+        txtQuery.addKeyListener(enterListener);
+    }
+
+    private void addEscKeyListeners()
+    {
+        KeyListener escListener = new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent esc)
+            {
+                if (esc.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    System.exit(0);
+                }
+            }
+        };
+        txtQuery.addKeyListener(escListener);
+        txtResult.addKeyListener(escListener);
+        rbtnBeginswith.addKeyListener(escListener);
+        rbtnContains.addKeyListener(escListener);
+        rbtnEndswith.addKeyListener(escListener);
+        rbtnExact.addKeyListener(escListener);
+        cmbLimits.addKeyListener(escListener);
+        chkCasesensitive.addKeyListener(escListener);
+        btnSearch.addKeyListener(escListener);
+        btnClear.addKeyListener(escListener);
+    }
 }
