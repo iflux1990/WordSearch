@@ -24,7 +24,7 @@ public class GUI extends javax.swing.JFrame
     public GUI()
     {
         initComponents();
-        rbtnExact.setSelected(true);
+        rbtnBeginswith.setSelected(true);
         try
         {
             wsmgr = new WSManager();
@@ -271,23 +271,38 @@ public class GUI extends javax.swing.JFrame
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
     {//GEN-HEADEREND:event_btnSearchActionPerformed
+
+
         
-        
-        wsmgr.search(txtQuery.getText());
         txtResult.setText("");
-        
-        for(int i = 0; i < wsmgr.search(txtQuery.getText()).size(); i++)
+
+        if (rbtnExact.isSelected() == true)
         {
-            txtResult.append(wsmgr.search(txtQuery.getText()).get(i)+ "\n");
+            wsmgr.searchExact(txtQuery.getText());
+            searchExact();
         }
-        
-        lblCount.setText("Count: " + wsmgr.search(txtQuery.getText()).size());
+        else if (rbtnContains.isSelected() == true)
+        {
+            wsmgr.searchExact(txtQuery.getText());
+            searchContains();
+        }
+        else if(rbtnBeginswith.isSelected() == true)
+        {
+            wsmgr.searchBegins(txtQuery.getText());
+            searchBegins();                   
+        }
+        else if(rbtnEndswith.isSelected() == true)
+        {
+            wsmgr.searchEnds(txtQuery.getText());
+            searchEnds();
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         txtResult.setText("");
         txtQuery.setText("");
+        lblCount.setText("Count: ");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -356,4 +371,44 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JTextField txtQuery;
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
+
+    private void searchExact()
+    {
+        for (int i = 0; i < wsmgr.searchExact(txtQuery.getText()).size(); i++)
+        {
+            txtResult.append(wsmgr.searchExact(txtQuery.getText()).get(i) + "\n");
+        }
+
+        lblCount.setText("Count: " + wsmgr.searchExact(txtQuery.getText()).size());
+    }
+
+    private void searchContains()
+    {
+        for (int i = 0; i < wsmgr.searchContains(txtQuery.getText()).size(); i++)
+        {
+            txtResult.append(wsmgr.searchContains(txtQuery.getText()).get(i) + "\n");
+        }
+
+        lblCount.setText("Count: " + wsmgr.searchContains(txtQuery.getText()).size());
+    }
+
+    private void searchBegins()
+    {
+        for (int i = 0; i < wsmgr.searchBegins(txtQuery.getText()).size(); i++)
+        {
+            txtResult.append(wsmgr.searchBegins(txtQuery.getText()).get(i) + "\n");
+        }
+
+        lblCount.setText("Count: " + wsmgr.searchBegins(txtQuery.getText()).size());
+    }
+
+    private void searchEnds()
+    {
+        for (int i = 0; i < wsmgr.searchEnds(txtQuery.getText()).size(); i++)
+        {
+            txtResult.append(wsmgr.searchEnds(txtQuery.getText()).get(i) + "\n");
+        }
+
+        lblCount.setText("Count: " + wsmgr.searchEnds(txtQuery.getText()).size());
+    }
 }
