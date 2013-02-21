@@ -6,6 +6,7 @@ package GUI;
 
 import BLL.WSManager;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -273,29 +274,11 @@ public class GUI extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnSearchActionPerformed
 
 
-        
-        txtResult.setText("");
 
-        if (rbtnExact.isSelected() == true)
-        {
-            wsmgr.searchExact(txtQuery.getText());
-            searchExact();
-        }
-        else if (rbtnContains.isSelected() == true)
-        {
-            wsmgr.searchExact(txtQuery.getText());
-            searchContains();
-        }
-        else if(rbtnBeginswith.isSelected() == true)
-        {
-            wsmgr.searchBegins(txtQuery.getText());
-            searchBegins();                   
-        }
-        else if(rbtnEndswith.isSelected() == true)
-        {
-            wsmgr.searchEnds(txtQuery.getText());
-            searchEnds();
-        }
+        txtResult.setText("");
+        search();
+        updateResult();
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -372,43 +355,48 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
 
-    private void searchExact()
+    private ArrayList<String> search()
     {
-        for (int i = 0; i < wsmgr.searchExact(txtQuery.getText()).size(); i++)
+        ArrayList<String> resultList = new ArrayList();
+        if (rbtnBeginswith.isSelected() == true)
         {
-            txtResult.append(wsmgr.searchExact(txtQuery.getText()).get(i) + "\n");
+            for (int i = 0; i < wsmgr.searchBegins(txtQuery.getText()).size(); i++)
+            {
+                resultList.add(wsmgr.searchBegins(txtQuery.getText()).get(i));
+            }
         }
+        else if (rbtnContains.isSelected() == true)
+        {
+            for (int i = 0; i < wsmgr.searchContains(txtQuery.getText()).size(); i++)
+            {
+                resultList.add(wsmgr.searchContains(txtQuery.getText()).get(i));
+            }
+        }
+        else if (rbtnEndswith.isSelected() == true)
+        {
+            for (int i = 0; i < wsmgr.searchEnds(txtQuery.getText()).size(); i++)
+            {
+                resultList.add(wsmgr.searchEnds(txtQuery.getText()).get(i));
+            }
+        }
+        else if (rbtnExact.isSelected() == true)
+        {
+            for (int i = 0; i < wsmgr.searchExact(txtQuery.getText()).size(); i++)
+            {
+                resultList.add(wsmgr.searchExact(txtQuery.getText()).get(i));
+            }
+        }
+        return resultList;
 
-        lblCount.setText("Count: " + wsmgr.searchExact(txtQuery.getText()).size());
     }
 
-    private void searchContains()
+    private void updateResult()
     {
-        for (int i = 0; i < wsmgr.searchContains(txtQuery.getText()).size(); i++)
+        for (int i = 0; i < search().size(); i++)
         {
-            txtResult.append(wsmgr.searchContains(txtQuery.getText()).get(i) + "\n");
+            txtResult.append(search().get(i) + "\n");
         }
-
-        lblCount.setText("Count: " + wsmgr.searchContains(txtQuery.getText()).size());
+        lblCount.setText("Count: " + search().size());
     }
 
-    private void searchBegins()
-    {
-        for (int i = 0; i < wsmgr.searchBegins(txtQuery.getText()).size(); i++)
-        {
-            txtResult.append(wsmgr.searchBegins(txtQuery.getText()).get(i) + "\n");
-        }
-
-        lblCount.setText("Count: " + wsmgr.searchBegins(txtQuery.getText()).size());
-    }
-
-    private void searchEnds()
-    {
-        for (int i = 0; i < wsmgr.searchEnds(txtQuery.getText()).size(); i++)
-        {
-            txtResult.append(wsmgr.searchEnds(txtQuery.getText()).get(i) + "\n");
-        }
-
-        lblCount.setText("Count: " + wsmgr.searchEnds(txtQuery.getText()).size());
-    }
 }
