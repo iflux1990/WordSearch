@@ -124,6 +124,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSearch">
       <Properties>
+        <Property name="mnemonic" type="int" value="115"/>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
@@ -132,6 +133,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnClear">
       <Properties>
+        <Property name="mnemonic" type="int" value="99"/>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
       <Events>
@@ -184,6 +186,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btngSearchType"/>
             </Property>
+            <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Begins with"/>
           </Properties>
         </Component>
@@ -192,6 +195,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btngSearchType"/>
             </Property>
+            <Property name="mnemonic" type="int" value="111"/>
             <Property name="text" type="java.lang.String" value="Contains"/>
           </Properties>
         </Component>
@@ -200,6 +204,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btngSearchType"/>
             </Property>
+            <Property name="mnemonic" type="int" value="101"/>
             <Property name="text" type="java.lang.String" value="Ends with"/>
           </Properties>
         </Component>
@@ -208,6 +213,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btngSearchType"/>
             </Property>
+            <Property name="mnemonic" type="int" value="120"/>
             <Property name="text" type="java.lang.String" value="Exact"/>
           </Properties>
         </Component>
@@ -244,6 +250,7 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="chkCasesensitive">
           <Properties>
+            <Property name="mnemonic" type="int" value="97"/>
             <Property name="text" type="java.lang.String" value="Case sensitive"/>
           </Properties>
         </Component>
@@ -303,6 +310,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnClose">
       <Properties>
+        <Property name="mnemonic" type="int" value="108"/>
         <Property name="text" type="java.lang.String" value="Close"/>
       </Properties>
       <Events>

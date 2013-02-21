@@ -5,6 +5,9 @@
 package GUI;
 
 import BLL.WSManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,6 +28,8 @@ public class GUI extends javax.swing.JFrame
     public GUI()
     {
         initComponents();
+        addEnterKeyListeners();
+        addEscKeyListeners();
         rbtnBeginswith.setSelected(true);
         try
         {
@@ -34,7 +39,6 @@ public class GUI extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "The dictionary file was not found", "Error - File not Found", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     /**
@@ -44,7 +48,8 @@ public class GUI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         btngSearchType = new javax.swing.ButtonGroup();
         lblQuery = new javax.swing.JLabel();
@@ -75,22 +80,30 @@ public class GUI extends javax.swing.JFrame
 
         lblResult.setText("Result :");
 
-        txtQuery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtQuery.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtQueryActionPerformed(evt);
             }
         });
 
+        btnSearch.setMnemonic('s');
         btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSearch.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnSearchActionPerformed(evt);
             }
         });
 
+        btnClear.setMnemonic('c');
         btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnClearActionPerformed(evt);
             }
         });
@@ -98,15 +111,19 @@ public class GUI extends javax.swing.JFrame
         PanelSearchType.setBorder(javax.swing.BorderFactory.createTitledBorder("Search Type"));
 
         btngSearchType.add(rbtnBeginswith);
+        rbtnBeginswith.setMnemonic('b');
         rbtnBeginswith.setText("Begins with");
 
         btngSearchType.add(rbtnContains);
+        rbtnContains.setMnemonic('o');
         rbtnContains.setText("Contains");
 
         btngSearchType.add(rbtnEndswith);
+        rbtnEndswith.setMnemonic('e');
         rbtnEndswith.setText("Ends with");
 
         btngSearchType.add(rbtnExact);
+        rbtnExact.setMnemonic('x');
         rbtnExact.setText("Exact");
 
         javax.swing.GroupLayout PanelSearchTypeLayout = new javax.swing.GroupLayout(PanelSearchType);
@@ -138,6 +155,7 @@ public class GUI extends javax.swing.JFrame
 
         PanelStyle.setBorder(javax.swing.BorderFactory.createTitledBorder("Style"));
 
+        chkCasesensitive.setMnemonic('a');
         chkCasesensitive.setText("Case sensitive");
 
         javax.swing.GroupLayout PanelStyleLayout = new javax.swing.GroupLayout(PanelStyle);
@@ -159,8 +177,10 @@ public class GUI extends javax.swing.JFrame
         PanelLimitation.setBorder(javax.swing.BorderFactory.createTitledBorder("Limitation"));
 
         cmbLimits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "10", "20", "50", "100" }));
-        cmbLimits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cmbLimits.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cmbLimitsActionPerformed(evt);
             }
         });
@@ -183,9 +203,12 @@ public class GUI extends javax.swing.JFrame
 
         lblCount.setText("Count: ");
 
+        btnClose.setMnemonic('l');
         btnClose.setText("Close");
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClose.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCloseActionPerformed(evt);
             }
         });
@@ -267,7 +290,6 @@ public class GUI extends javax.swing.JFrame
 
     private void txtQueryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtQueryActionPerformed
     {//GEN-HEADEREND:event_txtQueryActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtQueryActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
