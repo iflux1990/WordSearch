@@ -21,6 +21,7 @@ public class GUI extends javax.swing.JFrame
 {
 
     private WSManager wsmgr;
+    private ArrayList<String> resultList = new ArrayList();
 
     /**
      * Creates new form GUI
@@ -298,7 +299,7 @@ public class GUI extends javax.swing.JFrame
 
 
         txtResult.setText("");
-        search();
+        search(txtQuery.getText());
         updateResult();
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -377,48 +378,71 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
 
-    private ArrayList<String> search()
+    private void search(String query)
     {
-        ArrayList<String> resultList = new ArrayList();
-        if (rbtnBeginswith.isSelected() == true)
+        
+        if (rbtnBeginswith.isSelected())
         {
-            for (int i = 0; i < wsmgr.searchBegins(txtQuery.getText()).size(); i++)
-            {
-                resultList.add(wsmgr.searchBegins(txtQuery.getText()).get(i));
-            }
+            resultList = wsmgr.searchBegins(query);
         }
-        else if (rbtnContains.isSelected() == true)
+        else if (rbtnContains.isSelected())
         {
-            for (int i = 0; i < wsmgr.searchContains(txtQuery.getText()).size(); i++)
-            {
-                resultList.add(wsmgr.searchContains(txtQuery.getText()).get(i));
-            }
+            resultList = wsmgr.searchContains(query);
         }
-        else if (rbtnEndswith.isSelected() == true)
+        else if (rbtnEndswith.isSelected())
         {
-            for (int i = 0; i < wsmgr.searchEnds(txtQuery.getText()).size(); i++)
-            {
-                resultList.add(wsmgr.searchEnds(txtQuery.getText()).get(i));
-            }
+            resultList = wsmgr.searchEnds(query);
         }
-        else if (rbtnExact.isSelected() == true)
+        else if (rbtnExact.isSelected())
         {
-            for (int i = 0; i < wsmgr.searchExact(txtQuery.getText()).size(); i++)
-            {
-                resultList.add(wsmgr.searchExact(txtQuery.getText()).get(i));
-            }
+            resultList = wsmgr.searchExact(query);
         }
-        return resultList;
+        
 
     }
 
     private void updateResult()
     {
-        for (int i = 0; i < search().size(); i++)
+        if (cmbLimits.getSelectedIndex() == 0)
         {
-            txtResult.append(search().get(i) + "\n");
+            for (int i = 0; i < resultList.size(); i++)
+            {
+                txtResult.append(resultList.get(i) + "\n");
+            }
+            lblCount.setText("Count: " + resultList.size());
         }
-        lblCount.setText("Count: " + search().size());
+        else if (cmbLimits.getSelectedIndex() == 1)
+        {
+            for (int i = 0; i < Math.min(10, resultList.size()); i++)
+            {
+                txtResult.append(resultList.get(i) + "\n");
+            }
+            lblCount.setText("Count:  " + Math.min(10, resultList.size()) + " of " + resultList.size());
+        }
+        else if (cmbLimits.getSelectedIndex() == 2)
+        {
+            for (int i = 0; i < Math.min(20, resultList.size()); i++)
+            {
+                txtResult.append(resultList.get(i) + "\n");
+            }
+            lblCount.setText("Count:  " + Math.min(20, resultList.size()) + " of " + resultList.size());
+        }
+        else if (cmbLimits.getSelectedIndex() == 3)
+        {
+            for (int i = 0; i < Math.min(50, resultList.size()); i++)
+            {
+                txtResult.append(resultList.get(i) + "\n");
+            }
+            lblCount.setText("Count:  " + Math.min(50, resultList.size()) + " of " + resultList.size());
+        }
+        else if (cmbLimits.getSelectedIndex() == 4)
+        {
+            for (int i = 0; i < Math.min(100, resultList.size()); i++)
+            {
+                txtResult.append(resultList.get(i) + "\n");
+            }
+            lblCount.setText("Count:  " + Math.min(100, resultList.size()) + " of " + resultList.size());
+        }
     }
 
     private void addEnterKeyListeners()

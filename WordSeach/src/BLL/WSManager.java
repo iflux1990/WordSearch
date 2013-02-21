@@ -16,10 +16,12 @@ public class WSManager
 {
 
     private WSDBManager wsmgr;
+    private ArrayList<String> listAll = null;
 
     public WSManager() throws FileNotFoundException
     {
         wsmgr = new WSDBManager();
+        listAll = wsmgr.listAll(); 
     }
 
     public ArrayList<String> listAll()
@@ -31,15 +33,11 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for (int i = 0; i < wsmgr.listAll().size(); i++)
+        for(String s : listAll)
         {
-            if (SearchWord.toLowerCase() == null ? wsmgr.listAll().get(i) == null : SearchWord.toLowerCase().equals(wsmgr.listAll().get(i)))
+            if(s.equals(SearchWord))
             {
-                searchResult.add(wsmgr.listAll().get(i));
-            }
-            else if ("".equals(SearchWord))
-            {
-                return wsmgr.listAll();
+                searchResult.add(s);
             }
         }
         return searchResult;
@@ -49,15 +47,11 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for (int i = 0; i < wsmgr.listAll().size(); i++)
+        for(String s : listAll)
         {
-            if (wsmgr.listAll().get(i).contains(SearchWord.toLowerCase()))
+            if(s.contains(SearchWord))
             {
-                searchResult.add(wsmgr.listAll().get(i));
-            }
-            else if ("".equals(SearchWord))
-            {
-                return wsmgr.listAll();
+                searchResult.add(s);
             }
         }
         return searchResult;
@@ -67,15 +61,11 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for (int i = 0; i < wsmgr.listAll().size(); i++)
+        for(String s : listAll)
         {
-            if (wsmgr.listAll().get(i).startsWith(SearchWord.toLowerCase()))
+            if(s.startsWith(SearchWord))
             {
-                searchResult.add(wsmgr.listAll().get(i));
-            }
-            else if ("".equals(SearchWord))
-            {
-                return wsmgr.listAll();
+                searchResult.add(s);
             }
         }
         return searchResult;
@@ -85,39 +75,14 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for (int i = 0; i < wsmgr.listAll().size(); i++)
+        for(String s : listAll)
         {
-            if (wsmgr.listAll().get(i).endsWith(SearchWord.toLowerCase()))
+            if(s.endsWith(SearchWord))
             {
-                searchResult.add(wsmgr.listAll().get(i));
-            }
-            else if ("".equals(SearchWord))
-            {
-                return wsmgr.listAll();
+                searchResult.add(s);
             }
         }
         return searchResult;
     }
-
-//    public void search(String SearchWord, int option)
-//    {
-//        switch (option)
-//        {
-//            case 1:
-//                searchBegins(SearchWord);
-//                break;
-//            case 2:
-//                searchContains(SearchWord);
-//                break;
-//            case 3:
-//                searchEnds(SearchWord);
-//                break;
-//            case 4:
-//                searchExact(SearchWord);
-//                break;
-//        }
-//        
-//            
-//    }
 }
 
