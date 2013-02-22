@@ -29,8 +29,7 @@ public class GUI extends javax.swing.JFrame
     public GUI()
     {
         initComponents();
-        addEnterKeyListeners();
-        addEscKeyListeners();
+        addKeyListeners();
         rbtnBeginswith.setSelected(true);
         try
         {
@@ -380,7 +379,7 @@ public class GUI extends javax.swing.JFrame
 
     private void search(String query)
     {
-        
+
         if (rbtnBeginswith.isSelected())
         {
             resultList = wsmgr.searchBegins(query);
@@ -397,7 +396,7 @@ public class GUI extends javax.swing.JFrame
         {
             resultList = wsmgr.searchExact(query);
         }
-        
+
 
     }
 
@@ -445,44 +444,33 @@ public class GUI extends javax.swing.JFrame
         }
     }
 
-    private void addEnterKeyListeners()
+    private void addKeyListeners()
     {
-        KeyListener enterListener = new KeyAdapter()
+        KeyListener kl = new KeyAdapter()
         {
             @Override
-            public void keyPressed(KeyEvent enter)
+            public void keyPressed(KeyEvent ke)
             {
-                if (enter.getKeyCode() == KeyEvent.VK_ENTER)
+                if (ke.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    System.exit(0);
+                }
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
                 {
                     btnSearch.doClick();
                 }
             }
         };
-        txtQuery.addKeyListener(enterListener);
-    }
-
-    private void addEscKeyListeners()
-    {
-        KeyListener escListener = new KeyAdapter()
-        {
-            @Override
-            public void keyPressed(KeyEvent esc)
-            {
-                if (esc.getKeyCode() == KeyEvent.VK_ESCAPE)
-                {
-                    System.exit(0);
-                }
-            }
-        };
-        txtQuery.addKeyListener(escListener);
-        txtResult.addKeyListener(escListener);
-        rbtnBeginswith.addKeyListener(escListener);
-        rbtnContains.addKeyListener(escListener);
-        rbtnEndswith.addKeyListener(escListener);
-        rbtnExact.addKeyListener(escListener);
-        cmbLimits.addKeyListener(escListener);
-        chkCasesensitive.addKeyListener(escListener);
-        btnSearch.addKeyListener(escListener);
-        btnClear.addKeyListener(escListener);
+        txtQuery.addKeyListener(kl);
+        txtQuery.addKeyListener(kl);
+        txtResult.addKeyListener(kl);
+        rbtnBeginswith.addKeyListener(kl);
+        rbtnContains.addKeyListener(kl);
+        rbtnEndswith.addKeyListener(kl);
+        rbtnExact.addKeyListener(kl);
+        cmbLimits.addKeyListener(kl);
+        chkCasesensitive.addKeyListener(kl);
+        btnSearch.addKeyListener(kl);
+        btnClear.addKeyListener(kl);
     }
 }
