@@ -31,6 +31,8 @@ public class GUI extends javax.swing.JFrame
         initComponents();
         addKeyListeners();
         rbtnBeginswith.setSelected(true);
+        setLocationRelativeTo(null);
+
         try
         {
             wsmgr = new WSManager();
@@ -39,6 +41,7 @@ public class GUI extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "The dictionary file was not found", "Error - File not Found", JOptionPane.ERROR_MESSAGE);
         }
+        btnSearch.doClick();
     }
 
     /**
@@ -294,20 +297,25 @@ public class GUI extends javax.swing.JFrame
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
     {//GEN-HEADEREND:event_btnSearchActionPerformed
-
-
-
         txtResult.setText("");
-        search(txtQuery.getText());
-        updateResult();
 
+        if (!chkCasesensitive.isSelected())
+        {
+            search(txtQuery.getText().toLowerCase());
+        }
+        else
+        {
+            search(txtQuery.getText());
+        }
+        updateResult();
+        txtResult.setCaretPosition(0);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         txtResult.setText("");
         txtQuery.setText("");
-        lblCount.setText("Count: ");
+        lblCount.setText("Count: 0");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

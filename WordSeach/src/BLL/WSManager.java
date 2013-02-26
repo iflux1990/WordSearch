@@ -21,7 +21,7 @@ public class WSManager
     public WSManager() throws FileNotFoundException
     {
         wsmgr = new WSDBManager();
-        listAll = wsmgr.listAll(); 
+        listAll = wsmgr.listAll();
     }
 
     public ArrayList<String> listAll()
@@ -29,13 +29,13 @@ public class WSManager
         return wsmgr.listAll();
     }
 
-    public ArrayList<String> searchExact(String SearchWord)
+    public ArrayList<String> searchBegins(String SearchWord)
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for(String s : listAll)
+        for (String s : listAll)
         {
-            if(s.equals(SearchWord))
+            if (s.startsWith(SearchWord))
             {
                 searchResult.add(s);
             }
@@ -47,23 +47,9 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for(String s : listAll)
+        for (String s : listAll)
         {
-            if(s.contains(SearchWord))
-            {
-                searchResult.add(s);
-            }
-        }
-        return searchResult;
-    }
-
-    public ArrayList<String> searchBegins(String SearchWord)
-    {
-        ArrayList<String> searchResult = new ArrayList();
-
-        for(String s : listAll)
-        {
-            if(s.startsWith(SearchWord))
+            if (s.contains(SearchWord))
             {
                 searchResult.add(s);
             }
@@ -75,9 +61,23 @@ public class WSManager
     {
         ArrayList<String> searchResult = new ArrayList();
 
-        for(String s : listAll)
+        for (String s : listAll)
         {
-            if(s.endsWith(SearchWord))
+            if (s.endsWith(SearchWord))
+            {
+                searchResult.add(s);
+            }
+        }
+        return searchResult;
+    }
+
+    public ArrayList<String> searchExact(String SearchWord)
+    {
+        ArrayList<String> searchResult = new ArrayList();
+
+        for (String s : listAll)
+        {
+            if (s.equals(SearchWord))
             {
                 searchResult.add(s);
             }
@@ -85,4 +85,3 @@ public class WSManager
         return searchResult;
     }
 }
-
