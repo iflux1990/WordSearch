@@ -115,18 +115,4 @@ public class WSManager
         }
         return searchResult;
     }
-
-    public ArrayList<String> searchExact(String SearchWord)
-    {
-        ArrayList<String> searchResult = new ArrayList();
-
-        for (String s : listAll)
-        {
-            if (s.equals(SearchWord))
-            {
-                searchResult.add(s);
-            }
-        }
-        return searchResult;
-    }
 }
