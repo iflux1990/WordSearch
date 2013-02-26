@@ -15,7 +15,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Daniel
+ * @author Daniel & Rasmus
  */
 public class GUI extends javax.swing.JFrame
 {

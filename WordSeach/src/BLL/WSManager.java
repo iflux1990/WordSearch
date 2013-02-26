@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Daniel
+ * @author Daniel & Rasmus
  */
 public class WSManager
 {

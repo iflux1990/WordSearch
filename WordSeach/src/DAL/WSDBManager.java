@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Daniel
+ * @author Daniel & Rasmus
  */
 public class WSDBManager
 {
