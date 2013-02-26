@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 public class GUI extends javax.swing.JFrame
 {
 
+    //Global variables
     private WSManager wsmgr;
     private ArrayList<String> resultList = new ArrayList();
 
@@ -39,7 +40,7 @@ public class GUI extends javax.swing.JFrame
         }
         catch (FileNotFoundException ex)
         {
-            JOptionPane.showMessageDialog(this, "The dictionary file was not found", "Error - File not Found", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "The dictionary file was not found", "Error - File not Found", JOptionPane.ERROR_MESSAGE);          //displays a error dialog if the target file cannot be found.
         }
         btnSearch.doClick();
     }
@@ -311,6 +312,10 @@ public class GUI extends javax.swing.JFrame
         txtResult.setCaretPosition(0);
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    
+    /*
+     * Clears the textArea, query input box and the Count
+     */
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         txtResult.setText("");
@@ -318,6 +323,11 @@ public class GUI extends javax.swing.JFrame
         lblCount.setText("Count: 0");
     }//GEN-LAST:event_btnClearActionPerformed
 
+    
+    /*
+     * Closes the current frame, if its only one open it shuts down the 
+     * application
+     */
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
@@ -327,7 +337,7 @@ public class GUI extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-        /* Set the Nimbus look and feel */
+        /* Set the system look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -385,9 +395,12 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
 
+    /*
+     * Checks which of the radiobuttons are checked are calls the appropriate 
+     * method with the SearchWord as parameter.
+     */
     private void search(String query)
     {
-
         if (rbtnBeginswith.isSelected())
         {
             resultList = wsmgr.searchBegins(query);
@@ -404,10 +417,13 @@ public class GUI extends javax.swing.JFrame
         {
             resultList = wsmgr.searchExact(query);
         }
-
-
     }
 
+    
+    /*
+     * Updates the JtextArea and lblCount with searchresults from the result
+     * Arraylist. 
+     */
     private void updateResult()
     {
         if (cmbLimits.getSelectedIndex() == 0)
@@ -452,6 +468,12 @@ public class GUI extends javax.swing.JFrame
         }
     }
 
+    
+    /*
+     * Listens to the "Esc" key and "ENTER" key
+     * Enter acts as a click on the "search" button.
+     * Esc acts as a click on the "close" button. 
+     */
     private void addKeyListeners()
     {
         KeyListener kl = new KeyAdapter()
@@ -461,7 +483,7 @@ public class GUI extends javax.swing.JFrame
             {
                 if (ke.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
-                    System.exit(0);
+                    btnClose.doClick();
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER)
                 {
